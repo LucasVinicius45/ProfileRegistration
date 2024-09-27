@@ -1,5 +1,6 @@
 package br.com.fiap.profileregistration.view;
 
+import br.com.fiap.profileregistration.dao.BasicInformationDAOImpl;
 import br.com.fiap.profileregistration.dao.EmailDAOImpl;
 import br.com.fiap.profileregistration.dao.ProfessionalDAOImpl;
 import br.com.fiap.profileregistration.model.Adress;
@@ -24,13 +25,15 @@ public class TestControl {
 		
 		ProfessionalDAOImpl professionalDAO = new ProfessionalDAOImpl();
 		professionalDAO.includesProfessional(professional); 
-		
 		// professionalDAO.searchIDByCPF(professional, professional.getId());
 		
-        
         Email email = TestControl.showEmail(input);
         EmailDAOImpl emailDAO = new EmailDAOImpl();
         emailDAO.includesEmail(professional, email);
+        
+        BasicInformation information = TestControl.showBasicInformation(input);
+        BasicInformationDAOImpl basicInformationDAO = new BasicInformationDAOImpl();
+        basicInformationDAO.includesInformation(professional, information);
         
 		/*
 		professional.getDetail().setEmail(TestControl.showEmail(input));
