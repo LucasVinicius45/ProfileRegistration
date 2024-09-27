@@ -2,25 +2,19 @@ package br.com.fiap.profileregistration.model;
 
 public class Mentor extends Professional {
 
-	private String crm;
 	
-	public Mentor(String name, String cpf, String birthDate, String institution, String crm) {
+	public Mentor(int id, String name, String cpf, String birthDate, String institution, String crm, String type) {
 		
+		this.setId(id);
 		this.setName(name);
 		this.setCpf(cpf);
 		this.setBirthDate(birthDate);
 		this.setInstitution(institution);
 		this.setCrm(crm);
+		this.setType(type);
 		// TODO Auto-generated constructor stub
 	}
 	
-	public String getCrm() {
-		return crm;
-	}
-
-	public void setCrm(String crm) {
-		this.crm = crm;
-	}
 
 	/**
 	 * Apresenta o usuário

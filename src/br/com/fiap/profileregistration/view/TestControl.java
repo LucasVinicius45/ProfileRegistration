@@ -1,8 +1,6 @@
 package br.com.fiap.profileregistration.view;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-
+import br.com.fiap.profileregistration.dao.EmailDAOImpl;
 import br.com.fiap.profileregistration.dao.ProfessionalDAOImpl;
 import br.com.fiap.profileregistration.model.Adress;
 import br.com.fiap.profileregistration.model.BasicInformation;
@@ -14,7 +12,6 @@ import br.com.fiap.profileregistration.model.PhoneNumber;
 import br.com.fiap.profileregistration.model.Professional;
 import br.com.fiap.profileregistration.model.ProfessionalDetail;
 import br.com.fiap.profileregistration.model.ResidentDoctor;
-import br.com.fiap.profileregistration.util.ConnectionBD;
 
 public class TestControl {
 
@@ -26,11 +23,14 @@ public class TestControl {
 		Professional professional = TestControl.showUser(input);
 		
 		ProfessionalDAOImpl professionalDAO = new ProfessionalDAOImpl();
+		professionalDAO.includesProfessional(professional); 
 		
 		// professionalDAO.searchIDByCPF(professional, professional.getId());
 		
-        professionalDAO.includesProfessional(professional); 
-      
+        
+        Email email = TestControl.showEmail(input);
+        EmailDAOImpl emailDAO = new EmailDAOImpl();
+        emailDAO.includesEmail(professional, email);
         
 		/*
 		professional.getDetail().setEmail(TestControl.showEmail(input));
@@ -103,7 +103,7 @@ public class TestControl {
 			return resident;
 		} else {
 			System.out.println("Você escolheu mentor");
-			Mentor mentor = new Mentor(name, cpf, dateBirth, institution, crm);
+			Mentor mentor = new Mentor(id, name, cpf, dateBirth, institution, crm, "Mentor");
 			mentor.setDetail(detail);
 			mentor.show();
 			return mentor;
