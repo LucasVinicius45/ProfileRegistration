@@ -16,6 +16,8 @@ public abstract class Professional {
 	private String cpf;
 	private String birthDate;
 	private String institution;
+	private String type; 
+	private String crm;
 	private ProfessionalDetail detail;
 	
 
@@ -66,6 +68,22 @@ public abstract class Professional {
 	public void setId(int id) {
 		this.id = id;
 	} 
+	
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+	
+	public String getCrm() {
+		return crm;
+	}
+
+	public void setCrm(String crm) {
+		this.crm = crm;
+	}
 
 	/**
 	 * Registra as informações básicas do usuário, dando um print na tela
@@ -89,6 +107,7 @@ public abstract class Professional {
 	    } 
 	}
 
+	
 	
 	
 	

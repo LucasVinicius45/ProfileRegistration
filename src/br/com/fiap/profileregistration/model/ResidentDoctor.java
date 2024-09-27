@@ -2,10 +2,10 @@ package br.com.fiap.profileregistration.model;
 
 public class ResidentDoctor extends Professional {
 
-	private String crm;
+	
 
 	
-	public ResidentDoctor(int id, String name, String cpf, String birthDate, String institution, String crm) {
+	public ResidentDoctor(int id, String name, String cpf, String birthDate, String institution, String crm, String type) {
 		
 		this.setId(id);
 		this.setName(name);
@@ -13,17 +13,12 @@ public class ResidentDoctor extends Professional {
 		this.setBirthDate(birthDate);
 		this.setInstitution(institution);
 		this.setCrm(crm);
+		this.setType(type);
 		// TODO Auto-generated constructor stub
 	}
 	
 
-	public String getCrm() {
-		return crm;
-	}
-
-	public void setCrm(String crm) {
-		this.crm = crm;
-	}
+	
 	
 	/**
 	 * Registra as informações básicas do usuário, dando um print na tela

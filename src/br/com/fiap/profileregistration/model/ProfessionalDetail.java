@@ -76,18 +76,19 @@ public class ProfessionalDetail {
 	 * @param input
 	 * @return
 	 */
-	public String registerCPF(InputController input){
-		String cpf = input.getString("Digite um cpf válido, ex: XXX.XXX.XXX-XX");
-		if(!this.isCPF(cpf)) {
-			System.out.println("CPF inválido ");
-			this.registerCPF(input);
-			
-		} else {
-			this.setCpfProfessional(cpf);
-			
-		}
-		return cpf;
+	public String registerCPF(InputController input) {
+	    String cpf;
+	    do {
+	        cpf = input.getString("Digite um CPF válido, ex: XXX.XXX.XXX-XX");
+	        if (!this.isCPF(cpf)) {
+	            System.out.println("CPF inválido. Tente novamente.");
+	        }
+	    } while (!this.isCPF(cpf)); // Repete até CPF válido
+
+	    this.setCpfProfessional(cpf);
+	    return cpf;
 	}
+
 	
 	/**
 	 * Valida o cpf

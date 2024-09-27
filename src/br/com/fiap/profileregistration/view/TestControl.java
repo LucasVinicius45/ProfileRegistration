@@ -25,6 +25,13 @@ public class TestControl {
 	
 		Professional professional = TestControl.showUser(input);
 		
+		ProfessionalDAOImpl professionalDAO = new ProfessionalDAOImpl();
+		
+		// professionalDAO.searchIDByCPF(professional, professional.getId());
+		
+        professionalDAO.includesProfessional(professional); 
+      
+        
 		/*
 		professional.getDetail().setEmail(TestControl.showEmail(input));
 		professional.getDetail().setBasicInformation(TestControl.showBasicInformation(input));
@@ -37,14 +44,6 @@ public class TestControl {
 		professional.getDetail().show();
 		input.closeScanner();
 		*/
-		
-		// ConnectionBD connectionBD = ConnectionBD.getInstance();
-       // Connection conn = connectionBD.getConnection();
-
-            ProfessionalDAOImpl professionalDAO = new ProfessionalDAOImpl();
-            professionalDAO.includesProfessional(professional); 
-
-            // Feche a conexão ao final
          
     }
 	
@@ -96,7 +95,7 @@ public class TestControl {
 		
 		int id = (int) (Math.random() * 5000);
 		if( choiceNumber == 1) {
-			ResidentDoctor resident = new ResidentDoctor(id, name, cpf, dateBirth, institution, crm);
+			ResidentDoctor resident = new ResidentDoctor(id, name, cpf, dateBirth, institution, crm, "Residente");
 			
 			resident.setDetail(detail);
 			resident.show();
