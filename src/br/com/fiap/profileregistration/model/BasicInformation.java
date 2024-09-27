@@ -24,7 +24,7 @@ public class BasicInformation {
 		
 		boolean putDescription = input.getBoolean("Deseja iserir uma descrição? true or false");
 		if(putDescription) {
-			String description = input.getString("Insira a descrição");
+			String description = input.getString("Insira a descrição: ");
 			setDescription(description);
 			
 		} 

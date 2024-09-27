@@ -11,10 +11,11 @@ public abstract class Professional {
 	 * Criando os campos da classe usuário para cadastro
 	 */
 	// protected ProfessionalDetail detail;
+	private int id;
 	private String name;
 	private String cpf;
 	private String birthDate;
-	private double salary;
+	private String institution;
 	private ProfessionalDetail detail;
 	
 
@@ -42,12 +43,12 @@ public abstract class Professional {
 		this.birthDate = birthDate;
 	}
 
-	protected double getSalary() {
-		return salary;
+	public String getInstitution() {
+		return institution;
 	}
 
-	protected void setSalary(double salary) {
-		this.salary = salary;
+	public void setInstitution(String institution) {
+		this.institution = institution;
 	}
 
 	public ProfessionalDetail getDetail() {
@@ -57,6 +58,14 @@ public abstract class Professional {
 	public void setDetail(ProfessionalDetail detail) {
 		this.detail = detail;
 	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	} 
 
 	/**
 	 * Registra as informações básicas do usuário, dando um print na tela
@@ -78,7 +87,9 @@ public abstract class Professional {
 	    } catch (DateTimeParseException e) {
 	       throw new Error("Digite uma data válida: dd/MM/uuuu");
 	    } 
-	} 
+	}
+
+	
 	
 	
 }

@@ -8,7 +8,7 @@ public class InputController {
 	/**
 	 * Classe que age como um controle de scanner, facilitando na chamada para uma pergunta e passagem de informações
 	 */
-	Scanner scanner; 
+	private Scanner scanner; 
 	
 	// Abre o scanner
 	public InputController() {

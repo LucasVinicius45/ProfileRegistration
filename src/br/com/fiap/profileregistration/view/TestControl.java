@@ -1,37 +1,53 @@
-package br.com.fiap.profileregistration.test;
+package br.com.fiap.profileregistration.view;
 
-import br.com.fiap.profileregistration.model.ResidentDoctor;
-import br.com.fiap.profileregistration.model.Surgeon;
-import br.com.fiap.profileregistration.model.Task;
-import br.com.fiap.profileregistration.model.Professional;
-import br.com.fiap.profileregistration.model.ProfessionalDetail;
-import br.com.fiap.profileregistration.model.Email;
-import br.com.fiap.profileregistration.model.InputController;
-import br.com.fiap.profileregistration.model.PhoneNumber;
+import java.sql.Connection;
+import java.sql.SQLException;
 
-import java.util.ArrayList;
-
+import br.com.fiap.profileregistration.dao.ProfessionalDAOImpl;
 import br.com.fiap.profileregistration.model.Adress;
 import br.com.fiap.profileregistration.model.BasicInformation;
+import br.com.fiap.profileregistration.model.Email;
 import br.com.fiap.profileregistration.model.Experience;
+import br.com.fiap.profileregistration.model.InputController;
+import br.com.fiap.profileregistration.model.Mentor;
+import br.com.fiap.profileregistration.model.PhoneNumber;
+import br.com.fiap.profileregistration.model.Professional;
+import br.com.fiap.profileregistration.model.ProfessionalDetail;
+import br.com.fiap.profileregistration.model.ResidentDoctor;
+import br.com.fiap.profileregistration.util.ConnectionBD;
 
 public class TestControl {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
 		InputController input = new InputController();
-		Professional resident = TestControl.showUser(input);
-		resident.getDetail().setEmail(TestControl.showEmail(input));
-		resident.getDetail().setBasicInformation(TestControl.showBasicInformation(input));
-		resident.getDetail().setPhoneNumber(TestControl.showPhoneNumber(input));
-		resident.getDetail().setAdress(TestControl.showAdress(input));
+	
+		Professional professional = TestControl.showUser(input);
+		
+		/*
+		professional.getDetail().setEmail(TestControl.showEmail(input));
+		professional.getDetail().setBasicInformation(TestControl.showBasicInformation(input));
+		professional.getDetail().setPhoneNumber(TestControl.showPhoneNumber(input));
+		professional.getDetail().setAdress(TestControl.showAdress(input));
 		// resident.getDetail().setTask(TestControl.showTask());
-		resident.getDetail().setExperience(TestControl.showExperience(input));
-		resident.show();
+		professional.getDetail().setExperience(TestControl.showExperience(input));
+		professional.show();
 		System.out.println("\n --- REGISTRO GERAL --- ");
-		resident.getDetail().show();
+		professional.getDetail().show();
 		input.closeScanner();
-	}
+		*/
+		
+		// ConnectionBD connectionBD = ConnectionBD.getInstance();
+       // Connection conn = connectionBD.getConnection();
+
+            ProfessionalDAOImpl professionalDAO = new ProfessionalDAOImpl();
+            professionalDAO.includesProfessional(professional); 
+
+            // Feche a conexão ao final
+         
+    }
+	
 	/**
 	 * Apresenta o usuário, perguntando suas informções básicas
 	 * @param input
@@ -64,26 +80,34 @@ public class TestControl {
 	 */
 	public static Professional showUser(InputController input) {
 		
-		double choiceNumber = input.getDouble("Escolha: \n1 - Médico Residente \n2 - Cirurgião");
+		double choiceNumber = 0;
+		
+		do {
+			choiceNumber = input.getDouble("Escolha: \n1 - Médico Residente \n2 - Mentor");
+		} while(choiceNumber != 1 && choiceNumber != 2);
+		
+		ProfessionalDetail detail = new ProfessionalDetail();
 		String name = input.getString("Digite seu nome: ");
-		String cpf = input.getString("Digite seu cpf: ");
+		String cpf = detail.registerCPF(input);
 		String dateBirth = input.getDate("Data de Nascimento: dd/MM/yyyy ");
-		double salary = input.getDouble("Digite seu salário: ");
+		String institution = input.getString("Digite sua instituição de ensino: ");
 		String crm = input.getString("Digite seu crm: ");
 		// Professional user = new Professional(name, cpf);
-		if(choiceNumber == 1) {
-			ResidentDoctor resident = new ResidentDoctor(name, cpf, dateBirth, salary, crm);
+		
+		int id = (int) (Math.random() * 5000);
+		if( choiceNumber == 1) {
+			ResidentDoctor resident = new ResidentDoctor(id, name, cpf, dateBirth, institution, crm);
 			
-			resident.setDetail(new ProfessionalDetail(cpf));
+			resident.setDetail(detail);
 			resident.show();
 			System.out.println("Você escolheu residente");
 			return resident;
 		} else {
-			System.out.println("Você escolheu cirurgião");
-			Surgeon surgeon = new Surgeon(name, cpf, dateBirth, salary, crm);
-			surgeon.setDetail(new ProfessionalDetail(cpf));
-			surgeon.show();
-			return surgeon;
+			System.out.println("Você escolheu mentor");
+			Mentor mentor = new Mentor(name, cpf, dateBirth, institution, crm);
+			mentor.setDetail(detail);
+			mentor.show();
+			return mentor;
 		}	
 		
 	}
@@ -119,17 +143,7 @@ public class TestControl {
 		adress.show();
 		return adress;
 	}
-	/**
-	 * Mostra o progresso das tarefas printado
-	 * @return
-	 */
-	public static Task showTask() {
-		
-		Task task = new Task();
-		task.calculateProgress();
-		task.showProgress();
-		return task;
-	}
+
 	/**
 	 * Registra a experiência da pessoa
 	 * @param input
@@ -148,3 +162,4 @@ public class TestControl {
 	}
 	
 }
+

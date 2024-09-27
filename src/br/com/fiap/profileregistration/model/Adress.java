@@ -55,7 +55,7 @@ public class Adress {
 	 */
 	public void show() {
 		
-		System.out.println("País: " + this.getCountry() + "\nEstado:" + getState() + "\nCidade: "+ getCity() + "\nCEP: " + this.getPostalCode() + "\nRua: " + this.getStreet());
+		System.out.println("País: " + this.getCountry() + "\nEstado: " + getState() + "\nCidade: "+ getCity() + "\nCEP: " + this.getPostalCode() + "\nRua: " + this.getStreet());
 
 	}
 }
