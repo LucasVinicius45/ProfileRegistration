@@ -3,7 +3,6 @@ package br.com.fiap.profileregistration.model;
 public class ProfessionalDetail {
 	
 	private String cpfProfessional;
-	private Experience experience;
 	private Email email;
 	private PhoneNumber phoneNumber;
 	private BasicInformation basicInformation;
@@ -23,18 +22,7 @@ public class ProfessionalDetail {
 	public void setCpfProfessional(String cpfProfessional) {
 		this.cpfProfessional = cpfProfessional;
 	}
-	public Experience getExperinece() {
-		return experience;
-	}
-	public void setExperinece(Experience experience) {
-		this.experience = experience;
-	}
-	public Experience getExperience() {
-		return experience;
-	}
-	public void setExperience(Experience experience) {
-		this.experience = experience;
-	}
+	
 	public Email getEmail() {
 		return email;
 	}

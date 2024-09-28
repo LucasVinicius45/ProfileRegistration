@@ -7,7 +7,6 @@ import br.com.fiap.profileregistration.dao.ProfessionalDAOImpl;
 import br.com.fiap.profileregistration.model.Adress;
 import br.com.fiap.profileregistration.model.BasicInformation;
 import br.com.fiap.profileregistration.model.Email;
-import br.com.fiap.profileregistration.model.Experience;
 import br.com.fiap.profileregistration.model.InputController;
 import br.com.fiap.profileregistration.model.Mentor;
 import br.com.fiap.profileregistration.model.PhoneNumber;
@@ -37,6 +36,11 @@ public class TestControl {
         PhoneNumberDAOImpl phoneNumberDAO = new PhoneNumberDAOImpl();
         phoneNumberDAO.includesPhone(professional, number);
         
+		/*
+		 * Experience experience = TestControl.showExperience(input); ExperienceDAOImpl
+		 * experienceDAO = new ExperienceDAOImpl();
+		 * experienceDAO.includesExperience(professional, experience)
+		 */
         // Buscar ID por CPF
         professionalDAO.searchIDByCPF(professional);
         
@@ -103,15 +107,4 @@ public class TestControl {
         return adress;
     }
 
-    public static Experience showExperience(InputController input) {
-        System.out.println("\n--- EXPERIÊNCIAS ---");
-        String profession = input.getString("Informe sua profissão: ");
-        String description = input.getString("Informe uma breve descrição: ");
-        String startDate = input.getString("Informe a data de início de sua carreira: ");
-        String endDate = input.getString("Informe a data de encerramento ou se ainda continua: ");
-
-        Experience experience = new Experience(profession, description, startDate, endDate);
-        experience.show();
-        return experience;
-    }
 }
