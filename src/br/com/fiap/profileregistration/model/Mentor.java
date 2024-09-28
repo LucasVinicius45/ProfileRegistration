@@ -3,9 +3,8 @@ package br.com.fiap.profileregistration.model;
 public class Mentor extends Professional {
 
 	
-	public Mentor(int id, String name, String cpf, String birthDate, String institution, String crm, String type) {
+	public Mentor(String name, String cpf, String birthDate, String institution, String crm, String type) {
 		
-		this.setId(id);
 		this.setName(name);
 		this.setCpf(cpf);
 		this.setBirthDate(birthDate);

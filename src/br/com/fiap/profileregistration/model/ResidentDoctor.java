@@ -5,9 +5,8 @@ public class ResidentDoctor extends Professional {
 	
 
 	
-	public ResidentDoctor(int id, String name, String cpf, String birthDate, String institution, String crm, String type) {
+	public ResidentDoctor(String name, String cpf, String birthDate, String institution, String crm, String type) {
 		
-		this.setId(id);
 		this.setName(name);
 		this.setCpf(cpf);
 		this.setBirthDate(birthDate);
