@@ -6,7 +6,7 @@ public class ProfessionalDetail {
 	private Email email;
 	private PhoneNumber phoneNumber;
 	private BasicInformation basicInformation;
-	private Adress adress;
+	private Address adress;
 	
 	public ProfessionalDetail(String cpfProfessional) {
 		this.cpfProfessional = cpfProfessional;
@@ -41,10 +41,10 @@ public class ProfessionalDetail {
 	public void setBasicInformation(BasicInformation basicInformation) {
 		this.basicInformation = basicInformation;
 	}
-	public Adress getAdress() {
+	public Address getAdress() {
 		return adress;
 	}
-	public void setAdress(Adress adress) {
+	public void setAdress(Address adress) {
 		this.adress = adress;
 	}
 	

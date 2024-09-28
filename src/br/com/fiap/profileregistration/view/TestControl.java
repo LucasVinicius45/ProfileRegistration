@@ -1,10 +1,11 @@
 package br.com.fiap.profileregistration.view;
 
+import br.com.fiap.profileregistration.dao.AddressDAOImpl;
 import br.com.fiap.profileregistration.dao.BasicInformationDAOImpl;
 import br.com.fiap.profileregistration.dao.EmailDAOImpl;
 import br.com.fiap.profileregistration.dao.PhoneNumberDAOImpl;
 import br.com.fiap.profileregistration.dao.ProfessionalDAOImpl;
-import br.com.fiap.profileregistration.model.Adress;
+import br.com.fiap.profileregistration.model.Address;
 import br.com.fiap.profileregistration.model.BasicInformation;
 import br.com.fiap.profileregistration.model.Email;
 import br.com.fiap.profileregistration.model.InputController;
@@ -36,11 +37,10 @@ public class TestControl {
         PhoneNumberDAOImpl phoneNumberDAO = new PhoneNumberDAOImpl();
         phoneNumberDAO.includesPhone(professional, number);
         
-		/*
-		 * Experience experience = TestControl.showExperience(input); ExperienceDAOImpl
-		 * experienceDAO = new ExperienceDAOImpl();
-		 * experienceDAO.includesExperience(professional, experience)
-		 */
+        Address address = TestControl.showAdress(input);
+        AddressDAOImpl addressDAO = new AddressDAOImpl();
+        addressDAO.includesAdress(professional, address);
+		
         // Buscar ID por CPF
         professionalDAO.searchIDByCPF(professional);
         
@@ -94,7 +94,7 @@ public class TestControl {
         return information;
     }
 
-    public static Adress showAdress(InputController input) {
+    public static Address showAdress(InputController input) {
         System.out.println("\n--- ENDEREÇO --- ");
         String country = input.getString("Informe seu País: ");
         String state = input.getString("Informe seu estado: ");
@@ -102,9 +102,9 @@ public class TestControl {
         String postalCode = input.getString("Informe seu CEP: ");
         String street = input.getString("Informe sua Rua e complemento: ");
         
-        Adress adress = new Adress(street, city, state, postalCode, country);
-        adress.show();
-        return adress;
+        Address address = new Address(street, city, state, postalCode, country);
+        address.show();
+        return address;
     }
 
 }

@@ -1,6 +1,6 @@
 package br.com.fiap.profileregistration.model;
 
-public class Adress {
+public class Address {
 	
 	/**
 	 * Definindo os campos da classe Endereço
@@ -11,7 +11,7 @@ public class Adress {
 	private String postalCode;
 	private String country;
 	
-	public Adress(String street, String city, String state, String postalCode, String country) {
+	public Address(String street, String city, String state, String postalCode, String country) {
 		super();
 		this.street = street;
 		this.city = city;
