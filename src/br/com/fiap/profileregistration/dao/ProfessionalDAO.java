@@ -6,5 +6,5 @@ public interface ProfessionalDAO {
 	
 	public void includesProfessional(Professional professional);
 	
-	public void searchIDByCPF(Professional professional);
+	public Boolean searchIDByCPF(String cpf);
 }

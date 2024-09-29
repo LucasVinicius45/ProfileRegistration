@@ -19,9 +19,16 @@ public class TestControl {
 
     public static void main(String[] args) {
         InputController input = new InputController();
-    
-        Professional professional = TestControl.showUser(input);
+        
         ProfessionalDAOImpl professionalDAO = new ProfessionalDAOImpl();
+        Professional professional = null;
+        
+		try {
+			professional = TestControl.showUser(input, professionalDAO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         professionalDAO.includesProfessional(professional);  // O ID será gerado automaticamente
 
         // Agora que o ID foi gerado, podemos usar o ID correto para inserir os e-mails, telefones, etc.
@@ -41,8 +48,8 @@ public class TestControl {
         AddressDAOImpl addressDAO = new AddressDAOImpl();
         addressDAO.includesAdress(professional, address);
 		
-        // Buscar ID por CPF
-        professionalDAO.searchIDByCPF(professional);
+        
+        System.out.println("Cadastro realizado com sucesso");
         
         input.closeScanner();
     }
@@ -60,7 +67,7 @@ public class TestControl {
         return phoneNumber;
     }
 
-    public static Professional showUser(InputController input) {
+    public static Professional showUser(InputController input, ProfessionalDAOImpl professionalDAO) throws Exception {
         double choiceNumber = 0;
 
         do {
@@ -70,6 +77,11 @@ public class TestControl {
         ProfessionalDetail detail = new ProfessionalDetail();
         String name = input.getString("Digite seu nome: ");
         String cpf = detail.registerCPF(input);
+        boolean existUser = professionalDAO.searchIDByCPF(cpf);
+        System.out.println(existUser);
+        if(existUser == true) {
+        	throw new Exception("Já existe um usuário com esse cpf");
+        }
         String dateBirth = input.getDate("Data de Nascimento: dd/MM/yyyy ");
         String institution = input.getString("Digite sua instituição de ensino: ");
         String crm = input.getString("Digite seu CRM: ");

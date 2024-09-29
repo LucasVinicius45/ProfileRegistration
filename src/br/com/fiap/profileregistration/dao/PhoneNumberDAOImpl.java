@@ -34,7 +34,7 @@ public class PhoneNumberDAOImpl implements PhoneNumberDAO {
             int rowsAffected = stmt.executeUpdate();
             if (rowsAffected > 0) {
                 conn.commit(); // Confirma a transação
-                System.out.println("descrição inserida!");
+                System.out.println("número inserido!");
             } else {
                 System.out.println("Nenhuma linha inserida.");
             }

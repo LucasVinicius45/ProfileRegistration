@@ -41,8 +41,7 @@ public class ProfessionalDAOImpl implements ProfessionalDAO {
             if (rowsAffected > 0) {
                 ResultSet generatedKeys = stmt.getGeneratedKeys();
                 if (generatedKeys.next()) {
-                    // Aqui, use `getLong` ou `getBigDecimal` para evitar problemas de conversão
-                    professional.setId(generatedKeys.getInt(1)); // Certifique-se de que o ID é um número
+                    professional.setId(generatedKeys.getInt(1));
                 }
                 conn.commit();
                 System.out.println("Profissional inserido com sucesso! ID: " + professional.getId());
@@ -61,22 +60,24 @@ public class ProfessionalDAOImpl implements ProfessionalDAO {
 
 
     
-    public void searchIDByCPF(Professional professional) {
+    public Boolean searchIDByCPF(String cpf) {
         String query = "SELECT ID FROM PROFESSIONAL WHERE CPF = ?";
-
+        Boolean existUser = false;
         try (PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setString(1, professional.getCpf());
+            stmt.setString(1, cpf);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    professional.setId(rs.getInt("ID"));
-                    System.out.println("ID encontrado para o CPF " + professional.getCpf() + ": " + professional.getId());
+                    
+                    System.out.println("ID encontrado para o CPF " + cpf + ": " + rs.getInt("ID"));
+                    existUser = true;
                 } else {
-                    System.out.println("Nenhum ID encontrado para o CPF: " + professional.getCpf());
+                    System.out.println("Nenhum ID encontrado para o CPF: " + cpf);
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return existUser;
     }
 
     public static List<Professional> addCPFSList(Professional professional, ResultSet rs, List<Professional> cpfs) {

@@ -76,7 +76,6 @@ public class ProfessionalDetail {
 	    this.setCpfProfessional(cpf);
 	    return cpf;
 	}
-
 	
 	/**
 	 * Valida o cpf
