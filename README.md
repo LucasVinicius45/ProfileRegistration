@@ -72,3 +72,69 @@ Para utilizar o projeto, siga os passos abaixo:
 ### 🔹 **Clonar o repositório**  
 ```sh
 git clone https://github.com/seu-usuario/profile-registration.git](https://github.com/LucasVinicius45/ProfileRegistration.git)
+
+### 🔹 **Criar as tabelas no banco de dados**
+-- Criando a tabela PROFESSIONAL
+CREATE TABLE PROFESSIONAL (
+    id NUMBER, 
+    name VARCHAR2(20) NOT NULL,
+    birthDate DATE NOT NULL,
+    institution VARCHAR2(20) NOT NULL,
+    cpf VARCHAR2(15) NOT NULL,
+    crm VARCHAR2(15) NOT NULL,
+    type VARCHAR2(15) NOT NULL,
+    CONSTRAINT pk_ID PRIMARY KEY (id),
+    CONSTRAINT check_cpf CHECK(LENGTH(cpf) = 14)
+);
+
+-- Criando a tabela EMAIL
+CREATE TABLE EMAIL (
+    professionalID NUMBER,
+    mainEmail VARCHAR2(50) NOT NULL,
+    otherEmails VARCHAR2(50) NULL,
+    CONSTRAINT pk_mainEmail PRIMARY KEY(mainEmail),
+    FOREIGN KEY (professionalID) REFERENCES PROFESSIONAL(ID)
+);
+
+-- Criando a tabela BASIC_INFORMATION
+CREATE TABLE BASIC_INFORMATION (
+    professionalID NUMBER,
+    description VARCHAR2(300) NOT NULL,
+    CONSTRAINT pk_basicinfo PRIMARY KEY (PROFESSIONALID, DESCRIPTION),
+    FOREIGN KEY (professionalID) REFERENCES PROFESSIONAL(ID)
+);
+
+-- Criando a tabela PHONE_NUMBER
+CREATE TABLE PHONE_NUMBER(
+    professionalID NUMBER,
+    main_phone VARCHAR2 (17) NOT NULL,
+    other_phone VARCHAR2(17) NULL,
+    CONSTRAINT pk_mainPhone PRIMARY KEY(main_phone),
+    FOREIGN KEY (professionalID) REFERENCES PROFESSIONAL(ID)
+);
+
+-- Criando a tabela ADDRESS
+CREATE TABLE ADDRESS (
+    professionalID NUMBER,
+    postalCode VARCHAR2(20) PRIMARY KEY,
+    street VARCHAR2(100) NOT NULL,
+    city VARCHAR2(50) NOT NULL,
+    state VARCHAR2(50) NOT NULL,
+    country VARCHAR2(50) NOT NULL,
+    FOREIGN KEY (professionalID) REFERENCES PROFESSIONAL(ID)
+);
+
+-- Criando a sequence para auto incremento
+CREATE SEQUENCE professional_seq
+  START WITH 1
+  INCREMENT BY 1;
+
+-- Criando o trigger para autoincremento do ID
+CREATE OR REPLACE TRIGGER professional_id_trigger
+BEFORE INSERT ON PROFESSIONAL
+FOR EACH ROW
+BEGIN
+  :NEW.ID := professional_seq.NEXTVAL;
+END;
+
+
