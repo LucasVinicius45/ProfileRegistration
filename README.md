@@ -134,5 +134,3 @@ BEGIN
   :NEW.ID := professional_seq.NEXTVAL;
 END;
 
-```sh
-
