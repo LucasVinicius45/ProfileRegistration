@@ -69,10 +69,6 @@ Ela possui uma **interface DAO**, que implementa as funcionalidades de inclusão
 
 Para utilizar o projeto, siga os passos abaixo:  
 
-### 🔹 **Clonar o repositório**  
-```sh
-git clone https://github.com/seu-usuario/profile-registration.git](https://github.com/LucasVinicius45/ProfileRegistration.git)
-
 ### 🔹 **Criar as tabelas no banco de dados**
 -- Criando a tabela PROFESSIONAL
 CREATE TABLE PROFESSIONAL (
@@ -137,4 +133,8 @@ BEGIN
   :NEW.ID := professional_seq.NEXTVAL;
 END;
 
+
+### 🔹 **Clonar o repositório**  
+```sh
+git clone https://github.com/seu-usuario/profile-registration.git](https://github.com/LucasVinicius45/ProfileRegistration.git)
 
