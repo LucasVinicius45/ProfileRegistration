@@ -135,7 +135,4 @@ BEGIN
 END;
 
 ```sh
-### 🔹 **Clonar o repositório**  
-```sh
-git clone https://github.com/seu-usuario/profile-registration.git](https://github.com/LucasVinicius45/ProfileRegistration.git)
 
