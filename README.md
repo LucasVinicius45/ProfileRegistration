@@ -134,7 +134,7 @@ BEGIN
   :NEW.ID := professional_seq.NEXTVAL;
 END;
 
-
+```sh
 ### 🔹 **Clonar o repositório**  
 ```sh
 git clone https://github.com/seu-usuario/profile-registration.git](https://github.com/LucasVinicius45/ProfileRegistration.git)
