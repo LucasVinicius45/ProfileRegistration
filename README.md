@@ -70,6 +70,7 @@ Ela possui uma **interface DAO**, que implementa as funcionalidades de inclusão
 Para utilizar o projeto, siga os passos abaixo:  
 
 ### 🔹 **Criar as tabelas no banco de dados**
+```sh
 -- Criando a tabela PROFESSIONAL
 CREATE TABLE PROFESSIONAL (
     id NUMBER, 
